@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from './Logo.png';
+import logo from "./Logo.png";
 import "./search.css";
 
 class Search extends Component {
@@ -26,24 +26,28 @@ class Search extends Component {
   render() {
     return (
       <div className="nav-container">
-          <img className="logo" src={logo} alt=""></img>
-        <input
-          className="search-box"
-          type="text"
-          onChange={this.inputChange}
-          onKeyPress={this.pressEnter}
-          placeholder="Query"
-        />
-        
-        <select className="dropdown-container">
-          <option className="dropdown-item" selected disabled hidden>Collections</option>
-          <option className="dropdown-item">Mercedes</option>
-          <option className="dropdown-item">Audi</option>
-        </select>
+        <img className="logo" src={logo} alt=""></img>
+        <div className="search-container">
+          <input
+            className="search-box"
+            type="text"
+            onChange={this.inputChange}
+            onKeyPress={this.pressEnter}
+            placeholder="Query"
+          />
 
-        <button className="search-button" onClick={this.searchImage}>
-          <p>SEARCH</p>
-        </button>
+          <select className="dropdown-container">
+            <option className="dropdown-item" selected disabled hidden>
+              Collections
+            </option>
+            <option className="dropdown-item">Mercedes</option>
+            <option className="dropdown-item">Audi</option>
+          </select>
+
+          <button className="search-button" onClick={this.searchImage}>
+            <p>SEARCH</p>
+          </button>
+        </div>
       </div>
     );
   }

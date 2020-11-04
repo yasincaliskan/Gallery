@@ -10,13 +10,21 @@
   top: 0px;
 
   background: #050417;
+
+  position: fixed;
+}
+
+.search-container {
+  position: relative;
+  width: 60%;
+  left: 25%;
 }
 
 .search-box {
   position: absolute;
-  width: 400px;
+  width: 33%;
   height: 50px;
-  left: 206px;
+  /* left: 5%; */
   top: 35px;
 
   background: #ffffff;
@@ -30,7 +38,7 @@ input::placeholder {
   left: 228px;
   top: 52px;
 
-  font-family: Open Sans;
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -57,14 +65,12 @@ select {
 
 .search-button {
   position: absolute;
-  left: 75%;
-  right: 0%;
   top: 35px;
-  bottom: 0%;
+  margin-left: 70%;
 
   background: #2a2b8d;
   border-radius: 25px;
-  width: 246px;
+  width: 20%;
   height: 50px;
   border: none;
   outline: none;
@@ -83,9 +89,9 @@ select {
 
 .dropdown-container {
   position: absolute;
-  width: 400px;
-  height: 50px;
-  left: 636px;
+  width: 33%;
+  height: 56px;
+  left: 35%;
   top: 35px;
   background: #ffffff;
   border-radius: 4px;
@@ -121,6 +127,23 @@ option {
   position: absolute;
   width: 70px;
   height: 70px;
-  left: 50px;
-  top: 25px;
+  left: 4%;
+  top: 20%;
+}
+
+*:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 650px) {
+  .search-button > p {
+    font-family: "Open Sans";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: #ffffff;
+  }
 }
