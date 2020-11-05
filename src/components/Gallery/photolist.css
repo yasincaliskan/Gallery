@@ -11,3 +11,7 @@
 .gallery-container img{
     width: 300px;
 } 
+
+.pagination {
+    text-align: center;
+}

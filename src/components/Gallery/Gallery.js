@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Gallery extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Gallery extends Component {
   componentDidMount() {
     this.photoRef.current.addEventListener("load", () => {
       const calculatedSpan =
-        Math.round(this.photoRef.current.clientHeight / 5) + 2;
+        Math.round(this.photoRef.current.clientHeight / 5) + 2; // add try catch
       this.setState({
         spanCount: calculatedSpan,
       });
@@ -23,8 +23,12 @@ class Gallery extends Component {
   render() {
     const { photo } = this.props;
     const currentRoute = `/photos/${photo.id}`;
+  
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spanCount}` }}>
+      <div 
+      // onClick={() => {this.props.getDetail(photo.id)}} 
+      onClick={() => {this.props.getPhotoId(photo.id)}}
+      style={{ gridRowEnd: `span ${this.state.spanCount}` }}>
         <NavLink to={currentRoute}>
           <img
             ref={this.photoRef}

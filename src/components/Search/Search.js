@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import logo from "./Logo.png";
 import "./search.css";
 
@@ -14,7 +15,9 @@ class Search extends Component {
   };
 
   searchImage = () => {
-    this.props.onSearch(this.state.search);
+    this.props.getSearchKey(this.state.search);
+    console.log("search.js");
+    console.log(this.state.search);
   };
 
   pressEnter = (event) => {
@@ -44,9 +47,11 @@ class Search extends Component {
             <option className="dropdown-item">Audi</option>
           </select>
 
-          <button className="search-button" onClick={this.searchImage}>
-            <p>SEARCH</p>
-          </button>
+          <Link to="/">
+            <button className="search-button" onClick={this.searchImage}>
+              <p>SEARCH</p>
+            </button>
+          </Link>
         </div>
       </div>
     );

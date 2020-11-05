@@ -1,0 +1,16 @@
+.photo-detail {
+}
+
+#photo-detail {
+  width: 70%;
+  margin-top: 15%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.detail-container {
+  text-align: center;
+  width: 70%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
