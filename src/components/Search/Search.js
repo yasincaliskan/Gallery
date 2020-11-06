@@ -2,27 +2,46 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "./Logo.png";
 import "./search.css";
+import { connect } from "react-redux";
+import { setSearchKey } from "../../actions/searchActions";
+import axios from "axios";
 
 class Search extends Component {
   state = {
     search: "",
   };
 
-  inputChange = (event) => {
-    this.setState({
-      search: event.target.value,
+  inputChange = async (event) => {
+    const searchKey = event.target.value;
+    await this.setState({
+      search: searchKey,
     });
+    console.log(this.state.search);
   };
 
-  searchImage = () => {
-    this.props.getSearchKey(this.state.search);
-    console.log("search.js");
-    console.log(this.state.search);
+  setPhotos = async () => {
+    await axios
+      .get("https://api.unsplash.com/search/photos", {
+        params: {
+          query: this.state.search,
+          page: 1,
+        },
+        headers: {
+          Authorization:
+            "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
+        },
+      })
+      .then((resultPhotos) => {
+        this.props.setPhotos(resultPhotos);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   pressEnter = (event) => {
     if (event.key === "Enter") {
-      this.searchImage();
+      this.setPhotos();
     }
   };
 
@@ -39,8 +58,8 @@ class Search extends Component {
             placeholder="Query"
           />
 
-          <select className="dropdown-container">
-            <option className="dropdown-item" selected disabled hidden>
+          <select className="dropdown-container" defaultValue="mahmut">
+            <option className="dropdown-item"  disabled hidden>
               Collections
             </option>
             <option className="dropdown-item">Mercedes</option>
@@ -48,7 +67,7 @@ class Search extends Component {
           </select>
 
           <Link to="/">
-            <button className="search-button" onClick={this.searchImage}>
+            <button className="search-button" onClick={this.setPhotos}>
               <p>SEARCH</p>
             </button>
           </Link>
@@ -58,4 +77,16 @@ class Search extends Component {
   }
 }
 
-export default Search;
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     setSearchKey: (search) => dispatch(setSearchKey(search, 1))
+//   };
+// };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPhotos: (photos) => dispatch({ type: "SET_PHOTOS", photos }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Search);

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+import Pagination from "../Pagination/Pagination";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { getPhoto } from "../../actions/photoActions";
+import "./photolist.css";
 
 class Gallery extends Component {
   constructor(props) {
@@ -7,39 +11,63 @@ class Gallery extends Component {
     this.photoRef = React.createRef();
     this.state = {
       spanCount: 0,
+      photoId: "",
     };
   }
 
   componentDidMount() {
-    this.photoRef.current.addEventListener("load", () => {
-      const calculatedSpan =
-        Math.round(this.photoRef.current.clientHeight / 5) + 2; // add try catch
-      this.setState({
-        spanCount: calculatedSpan,
-      });
-    });
+    // this.photoRef.current.addEventListener("load", () => {
+    //   const calculatedSpan =
+    //     Math.round(this.photoRef.current.clientHeight / 5) + 2;
+    //   this.setState({
+    //     spanCount: calculatedSpan,
+    //   });
+    // });
   }
 
+  getPhoto = (id) => {
+    this.props.getPhoto(id);
+  };
+
   render() {
-    const { photo } = this.props;
-    const currentRoute = `/photos/${photo.id}`;
-  
     return (
-      <div 
-      // onClick={() => {this.props.getDetail(photo.id)}} 
-      onClick={() => {this.props.getPhotoId(photo.id)}}
-      style={{ gridRowEnd: `span ${this.state.spanCount}` }}>
-        <NavLink to={currentRoute}>
-          <img
-            ref={this.photoRef}
-            key={photo.id}
-            src={photo.urls.small}
-            alt=""
-          />
-        </NavLink>
+      <div>
+        <div className="gallery-container">
+          {this.props.photos.map((photo) => (
+            <div
+              key={photo.id}
+              onClick={() => this.getPhoto(photo.id)}
+              style={{ gridRowEnd: `span ${this.state.spanCount}` }}
+            >
+              <NavLink to={`/photos/${photo.id}`}>
+                <img
+                  ref={this.photoRef}
+                  key={photo.id}
+                  src={photo.urls.small}
+                  alt=""
+                />
+              </NavLink>
+            </div>
+          ))}
+        </div>
+        {/* <div className="pagination">
+          <Pagination />
+        </div> */}
       </div>
     );
   }
 }
 
-export default Gallery;
+const mapStateToProps = (state) => {
+  return {
+    photos: state.photos,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPhoto: (id) => dispatch(getPhoto(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
