@@ -8,7 +8,6 @@ import Detail from "./Detail/Detail";
 class App extends Component {
   state = {
     photos: [],
-    photoDetail: {},
     page: 1,
     photoId: "",
     search: "",
@@ -19,11 +18,9 @@ class App extends Component {
       search: searchKey,
     });
     this.onSearch();
-    // console.log(this.state.search);
   };
 
   onSearch = async () => {
-    if (this.state.search !== undefined) {
       console.log(this.state.search);
       await axios
         .get("https://api.unsplash.com/search/photos", {
@@ -46,30 +43,6 @@ class App extends Component {
         .catch((error) => {
           console.log(error);
         });
-    } else {
-      console.log("boşşş");
-    }
-  };
-
-  getPhoto = async (photoId) => {
-    await axios
-      .get(`https://api.unsplash.com/photos/${photoId}`, {
-        headers: {
-          Authorization:
-            "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
-        },
-      })
-      .then((resultPhoto) => {
-        
-        this.setState({
-          photoDetail: resultPhoto,
-        });
-        console.log(this.state.photoDetail);
-      });
-  };
-
-  getDetail = (photo) => {
-    this.getPhoto(this.state.photoId);
   };
 
   getPagination = (way) => {
@@ -87,7 +60,9 @@ class App extends Component {
   };
 
   getPhotoId = (photoId) => {
-    this.getPhoto(photoId);
+    this.setState({
+      photoId: photoId
+    })
   };
 
   render() {
@@ -113,7 +88,7 @@ class App extends Component {
             path="/photos/:id"
             component={() => (
               <Detail
-                photoDetail={this.state.photoDetail}
+                photoId={this.state.photoId}
               />
             )}
           />
