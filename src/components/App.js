@@ -5,24 +5,11 @@ import Gallery from "./Gallery/Gallery";
 import Photo from "./Detail/Photo";
 
 class App extends Component {
-  // getPagination = (way) => {
-  //   if (way === "Prev") {
-  //     this.setState({
-  //       page: this.state.page - 1, //TODO: page==0 prev display:none
-  //     });
-  //   } else if (way === "Next") {
-  //     this.setState({
-  //       page: this.state.page + 1,
-  //     });
-  //   }
-  //   this.onSearch();
-  // };
-
   render() {
     return (
-      <div>
+      <div className="app-container">
         <Router>
-          <Search/>
+          <Route path="/" component={() => <Search />} />
           <Route exact path="/" component={() => <Gallery />} />
           <Route exact path="/photos/:id" component={() => <Photo />} />
         </Router>

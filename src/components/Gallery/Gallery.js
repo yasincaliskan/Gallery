@@ -2,27 +2,13 @@ import React, { Component } from "react";
 import Pagination from "../Pagination/Pagination";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import Image from './Image';
 import { getPhoto } from "../../actions/photoActions";
-import "./photolist.css";
+import "./gallery.css";
 
 class Gallery extends Component {
-  constructor(props) {
-    super(props);
-    this.photoRef = React.createRef();
-    this.state = {
-      spanCount: 0,
-      photoId: "",
-    };
-  }
-
-  componentDidMount() {
-    // this.photoRef.current.addEventListener("load", () => {
-    //   const calculatedSpan =
-    //     Math.round(this.photoRef.current.clientHeight / 5) + 2;
-    //   this.setState({
-    //     spanCount: calculatedSpan,
-    //   });
-    // });
+  state = {
+    photoId: ""
   }
 
   getPhoto = (id) => {
@@ -33,22 +19,9 @@ class Gallery extends Component {
     return (
       <div>
         <div className="gallery-container">
-          {this.props.photos.map((photo) => (
-            <div
-              key={photo.id}
-              onClick={() => this.getPhoto(photo.id)}
-              style={{ gridRowEnd: `span ${this.state.spanCount}` }}
-            >
-              <NavLink to={`/photos/${photo.id}`}>
-                <img
-                  ref={this.photoRef}
-                  key={photo.id}
-                  src={photo.urls.small}
-                  alt=""
-                />
-              </NavLink>
-            </div>
-          ))}
+          {this.props.photos.map((photo) => 
+            <Image photo={photo} getPhoto={this.getPhoto}/>
+          )}
         </div>
         {/* <div className="pagination">
           <Pagination />

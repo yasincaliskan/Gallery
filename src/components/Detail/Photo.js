@@ -30,9 +30,9 @@ class Photo extends Component {
           <img id="photo-detail" src={this.state.photo.urls.regular} alt="" />
           <div className="detail-container">
             <div className="user">
-              {/* <img src={photo.data.user.profile_image.large} alt="" />
-            <h3>{photo.data.user.first_name}</h3>
-            <h1>{photo.data.alt_description}</h1> */}
+              <img src={this.state.photo.user.profile_image.large} alt="" />
+            <h3>{this.state.photo.user.name}</h3>
+            <h1>{this.state.photo.description}</h1>
             </div>
           </div>
         </div>

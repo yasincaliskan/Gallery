@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import logo from "./Logo.png";
 import "./search.css";
 import { connect } from "react-redux";
-import { setSearchKey } from "../../actions/searchActions";
 import axios from "axios";
 
 class Search extends Component {
@@ -48,7 +47,9 @@ class Search extends Component {
   render() {
     return (
       <div className="nav-container">
+        <Link to="/">
         <img className="logo" src={logo} alt=""></img>
+        </Link>
         <div className="search-container">
           <input
             className="search-box"
