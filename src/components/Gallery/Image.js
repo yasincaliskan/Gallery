@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Loader from "../HOC/Loader";
 
 class Image extends Component {
   constructor(props) {
@@ -13,11 +14,13 @@ class Image extends Component {
 
   componentDidMount() {
     this.photoRef.current.addEventListener("load", () => {
-      const calculatedSpan =
-        Math.round(this.photoRef.current.clientHeight / 5) + 2;
-      this.setState({
-        spanCount: calculatedSpan,
-      });
+      if (this.photoRef.current !== null) {
+        const calculatedSpan =
+          Math.round(this.photoRef.current.clientHeight / 5) + 2;
+        this.setState({
+          spanCount: calculatedSpan,
+        });
+      }
     });
   }
 

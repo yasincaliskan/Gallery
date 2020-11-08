@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import './photo.css';
 import axios from "axios";
 
 class Photo extends Component {

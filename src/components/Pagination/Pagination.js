@@ -1,23 +1,25 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { setPageNumber } from "../../actions/searchActions";
 
 class Pagination extends Component {
-  findWay = (way) => {
-    this.props.getPagination(way);
-  };
-
+  
   render() {
     return (
-      <div>
+      <div className="pagination">
         <button
           onClick={() => {
-            this.findWay("Prev");
+            this.props.setPageNumber("PREV");
+
           }}
         >
           Prev
         </button>
+
         <button
           onClick={() => {
-            this.findWay("Next");
+            this.props.setPageNumber("NEXT");
+
           }}
         >
           Next
@@ -27,4 +29,10 @@ class Pagination extends Component {
   }
 }
 
-export default Pagination;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPageNumber: (pageWay) => dispatch(setPageNumber(pageWay)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Pagination);

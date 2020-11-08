@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import Pagination from "../Pagination/Pagination";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import Image from './Image';
-import { getPhoto } from "../../actions/photoActions";
 import "./gallery.css";
+import "../HOC/loader.css";
+import Image from "./Image";
+import Pagination from "../Pagination/Pagination";
+import Loader from "../HOC/Loader";
+import { connect } from "react-redux";
+import { getPhoto } from "../../actions/photoActions";
 
 class Gallery extends Component {
   state = {
-    photoId: ""
-  }
+    photoId: "",
+  };
 
   getPhoto = (id) => {
     this.props.getPhoto(id);
@@ -19,13 +20,11 @@ class Gallery extends Component {
     return (
       <div>
         <div className="gallery-container">
-          {this.props.photos.map((photo) => 
-            <Image photo={photo} getPhoto={this.getPhoto}/>
-          )}
+          {this.props.photos.map((photo) => (
+            <Image key={photo.id} photo={photo} getPhoto={this.getPhoto} />
+          ))}
         </div>
-        {/* <div className="pagination">
-          <Pagination />
-        </div> */}
+        <Pagination />
       </div>
     );
   }
@@ -34,6 +33,7 @@ class Gallery extends Component {
 const mapStateToProps = (state) => {
   return {
     photos: state.photos,
+    isLoading: state.isLoading,
   };
 };
 

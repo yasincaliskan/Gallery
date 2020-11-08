@@ -16,8 +16,9 @@
 
 .search-container {
   position: relative;
-  width: 60%;
-  left: 25%;
+  margin: auto;
+  width:50%;  
+  
 }
 
 .search-box {
@@ -65,7 +66,7 @@ select {
 
 .search-button {
   position: absolute;
-  top: 35px;
+  top: 40px;
   margin-left: 70%;
 
   background: #2a2b8d;
@@ -127,7 +128,7 @@ option {
   position: absolute;
   width: 70px;
   height: 70px;
-  left: 4%;
+  left: 3%;
   top: 20%;
 }
 
