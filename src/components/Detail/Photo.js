@@ -33,7 +33,8 @@ class Photo extends Component {
             <div className="user">
               <img src={this.state.photo.user.profile_image.large} alt="" />
             <h3>{this.state.photo.user.name}</h3>
-            <h1>{this.state.photo.description}</h1>
+            <h5>{this.state.photo.user.bio}</h5>
+            <p>{this.state.photo.description}</p>
             </div>
           </div>
         </div>

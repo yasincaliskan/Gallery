@@ -1,0 +1,29 @@
+.prev-button {
+  position: absolute;
+  width: 93px;
+  height: 42px;
+  left: 46%;
+  margin-bottom: 20px;
+
+  background: #ffffff;
+  /* #D5D7E5 */
+
+  border: 1px solid #d5d7e5;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+.next-button {
+  position: absolute;
+  width: 93px;
+  height: 42px;
+  left: 54%;
+  margin-bottom: 20px;
+
+  background: #ffffff;
+  /* #D5D7E5 */
+
+  border: 1px solid #d5d7e5;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
