@@ -8,20 +8,18 @@ import { connect } from "react-redux";
 import { getPhoto } from "../../actions/photoActions";
 
 class Gallery extends Component {
-  state = {
-    photoId: "",
-  };
-
-  getPhoto = (id) => {
-    this.props.getPhoto(id);
-  };
-
   render() {
     return (
       <div>
         <div className="gallery-container">
           {this.props.photos.map((photo) => (
-            <Image key={photo.id} photo={photo} getPhoto={this.getPhoto} />
+            <Image
+              key={photo.id}
+              photo={photo}
+              getPhoto={() => {
+                this.props.getPhoto(photo.id);
+              }}
+            />
           ))}
         </div>
         <Pagination />

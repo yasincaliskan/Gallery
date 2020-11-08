@@ -17,7 +17,7 @@ class Search extends Component {
     ],
   };
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.page !== this.props.page) {
       this.setPhotos();
     }
