@@ -31,7 +31,7 @@ class Image extends Component {
         onClick={() => this.props.getPhoto(this.props.photo.id)}
         style={{ gridRowEnd: `span ${this.state.spanCount}` }}
       >
-        <NavLink to={`/photos/${this.props.photo.id}`}>
+        <NavLink to={`/photo/${this.props.photo.id}`}>
           <img
             ref={this.photoRef}
             key={this.props.photo.id}

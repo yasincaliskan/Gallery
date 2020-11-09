@@ -31,7 +31,7 @@ class Gallery extends Component {
 const mapStateToProps = (state) => {
   return {
     photos: state.photos,
-    isLoading: state.isLoading,
+    // isLoading: state.isLoading,
   };
 };
 
@@ -41,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
+export default Loader(connect(mapStateToProps, mapDispatchToProps)(Gallery));

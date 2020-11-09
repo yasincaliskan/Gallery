@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import './photo.css';
+import Loader from '../HOC/Loader';
 import axios from "axios";
+import './photo.css';
 
 class Photo extends Component {
   state = {
@@ -18,7 +19,6 @@ class Photo extends Component {
       })
       .then((resultPhoto) => {
         this.setState({ photo: resultPhoto.data });
-        console.log(this.state);
       });
   }
 
@@ -46,7 +46,8 @@ class Photo extends Component {
 const mapStateToProps = (state) => {
   return {
     photoId: state.photoId,
+    isLoading : state.isLoading
   };
 };
 
-export default connect(mapStateToProps, null)(Photo);
+export default Loader(connect(mapStateToProps, null)(Photo));
