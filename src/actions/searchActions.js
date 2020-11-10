@@ -1,10 +1,3 @@
-export const setPhotos = (photos) => {
-  return {
-    type: "SET_PHOTOS",
-    photos: photos,
-  };
-};
-
 export const setPageNumber = (pageWay) => {
   return {
     type: "SET_PAGE_NUMBER",
@@ -18,9 +11,4 @@ export const setInitPage = () => {
   };
 };
 
-export const setLoader = (isLoading) => {
-  return {
-    type: "SET_LOADING_STATE",
-    isLoading: isLoading,
-  };
-};
+

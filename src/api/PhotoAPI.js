@@ -1,33 +1,34 @@
 import axios from "axios";
-import { connect } from "react-redux";
-import { setPhotos } from '../actions/searchActions';
 
-const getPhotos = (query, page, collections) => {
-  axios
+export const getPhotos = async (query, page, collection, callback) => {
+  await axios
     .get("https://api.unsplash.com/search/photos", {
       params: {
         query,
         page,
-        collections,
+        collection,
       },
       headers: {
         Authorization: "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
       },
     })
     .then((resultPhotos) => {
-      this.props.setPhotos(resultPhotos);
+      callback(resultPhotos);
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setPhotos: (photos) => dispatch(setPhotos(photos)),
-
-    // setLoader: (isLoading) => dispatch(setLoader(isLoading)),
-  };
+export const getPhoto = (photoId, callback) => {
+  console.log(photoId);
+  axios
+    .get(`https://api.unsplash.com/photos/${photoId}`, {
+      headers: {
+        Authorization: "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
+      },
+    })
+    .then((resultPhoto) => {
+      callback(resultPhoto.data);
+    });
 };
-
-export default connect(null, mapDispatchToProps)(getPhotos);

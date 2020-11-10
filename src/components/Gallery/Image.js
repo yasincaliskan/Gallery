@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { setLoaded, setLoading } from "../../actions/loadingActions";
+import { getPhoto } from "../../api/PhotoAPI";
 import Loader from "../HOC/Loader";
 
 class Image extends Component {
@@ -24,11 +26,22 @@ class Image extends Component {
     });
   }
 
+  handleClick = (e) => {
+    setLoading();
+    this.setState({
+      photoId: e.target.key,
+    });
+    getPhoto(this.state.photoId, (photo) => {
+      this.props.setPhoto(photo);
+      setLoaded();
+    });
+  };
+
   render() {
     return (
       <div
         key={this.props.photo.id}
-        onClick={() => this.props.getPhoto(this.props.photo.id)}
+        onClick={this.handleClick}
         style={{ gridRowEnd: `span ${this.state.spanCount}` }}
       >
         <NavLink to={`/photo/${this.props.photo.id}`}>
@@ -44,4 +57,4 @@ class Image extends Component {
   }
 }
 
-export default Image;
+export default Loader(Image);

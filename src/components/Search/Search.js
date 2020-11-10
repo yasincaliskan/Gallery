@@ -4,60 +4,55 @@ import logo from "./Logo.png";
 import "./search.css";
 import { connect } from "react-redux";
 import axios from "axios";
-import { setPhotos, setLoader, setInitPage } from "../../actions/searchActions";
+import { setInitPage } from "../../actions/searchActions";
+import { setPhotos } from '../../actions/photoActions';
+import { getPhotos } from '../../api/PhotoAPI';
+import { setLoaded, setLoading } from "../../actions/loadingActions";
 
 class Search extends Component {
   state = {
     search: "",
     collection: "",
     collections: [
-      { title: "Nature" },
-      { title: "Technology" },
-      { title: "Popular" },
+      { title: "Nature" , id:1},
+      { title: "Technology", id:2 },
+      { title: "Popular", id:3 },
     ],
   };
 
   componentDidUpdate(prevProps) {
     if (prevProps.page !== this.props.page) {
-      this.setPhotos();
+      this.callPhotos();
     }
   }
 
-  inputChange = async (event) => {
+  inputChange = (event) => {
     const searchKey = event.target.value;
-    await this.setState({
+     this.setState({
       search: searchKey,
     });
   };
 
-  setPhotos = () => {
-    // this.props.setLoader(true);
-    axios.get("https://api.unsplash.com/search/photos", {
-        params: {
-          query: this.state.search,
-          page: this.props.page,
-          collections: this.state.collection,
-        },
-        headers: {
-          Authorization:
-            "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
-        },
-      })
-      .then((resultPhotos) => {
-        this.props.setPhotos(resultPhotos);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    // this.props.setLoader(false);
-  };
+  callPhotos = () => {
+    setLoading();
+    getPhotos(this.state.search, this.props.page, this.state.collection, (photos) => {
+      this.props.setPhotos(photos);
+    });
+    setLoaded();
+  }
 
   pressEnter = (event) => {
     if (event.key === "Enter") {
       this.props.setInitPage();
-      this.setPhotos();
+      this.callPhotos();
+      
     }
   };
+
+  onClick = () => {
+    this.props.setInitPage();
+      this.callPhotos();
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -86,14 +81,14 @@ class Search extends Component {
             defaultValue="mahmut"
           >
             {this.state.collections.map((collection) => (
-              <option className="dropdown-item" value={collection.title}>
+              <option key={collection.id} className="dropdown-item" value={collection.title}>
                 {collection.title}
               </option>
             ))}
           </select>
 
           <Link to="/">
-            <button className="search-button" onClick={this.setPhotos}>
+            <button className="search-button" onClick={this.onClick}>
               <p>SEARCH</p>
             </button>
           </Link>

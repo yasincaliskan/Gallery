@@ -5,7 +5,7 @@ import Image from "./Image";
 import Pagination from "../Pagination/Pagination";
 import Loader from "../HOC/Loader";
 import { connect } from "react-redux";
-import { getPhoto } from "../../actions/photoActions";
+import { setPhoto } from "../../actions/photoActions";
 
 class Gallery extends Component {
   render() {
@@ -16,8 +16,8 @@ class Gallery extends Component {
             <Image
               key={photo.id}
               photo={photo}
-              getPhoto={() => {
-                this.props.getPhoto(photo.id);
+              setPhoto={() => {
+                this.props.setPhoto(photo);
               }}
             />
           ))}
@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPhoto: (id) => dispatch(getPhoto(id)),
+    setPhoto: (photo) => dispatch(setPhoto(photo)),
   };
 };
 
