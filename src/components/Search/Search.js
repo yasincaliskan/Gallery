@@ -44,8 +44,7 @@ class Search extends Component {
   pressEnter = (event) => {
     if (event.key === "Enter") {
       this.props.setInitPage();
-      this.callPhotos();
-      
+      this.callPhotos(); 
     }
   };
 
@@ -64,7 +63,7 @@ class Search extends Component {
     return (
       <div className="nav-container">
         <Link to="/">
-          <img className="logo" src={logo} alt=""></img>
+          <img className="logo" src={logo} alt="gallery-logo"></img>
         </Link>
         <div className="search-container">
           <input

@@ -4,6 +4,7 @@ import Search from "./Search/Search";
 import Gallery from "./Gallery/Gallery";
 import Photo from "./Detail/Photo";
 import { connect } from "react-redux";
+import Home from "./Home";
 
 class App extends Component {
   render() {

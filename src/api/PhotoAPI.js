@@ -20,15 +20,17 @@ export const getPhotos = async (query, page, collection, callback) => {
     });
 };
 
-export const getPhoto = (photoId, callback) => {
+export const getPhoto = async (photoId, callback) => {
   console.log(photoId);
-  axios
+  await axios
     .get(`https://api.unsplash.com/photos/${photoId}`, {
       headers: {
         Authorization: "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
       },
     })
     .then((resultPhoto) => {
+      console.log(resultPhoto);
       callback(resultPhoto.data);
+
     });
 };

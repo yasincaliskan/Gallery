@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { setLoaded, setLoading } from "../../actions/loadingActions";
+import { setPhoto } from "../../actions/photoActions";
 import { getPhoto } from "../../api/PhotoAPI";
 import Loader from "../HOC/Loader";
 
@@ -33,8 +34,8 @@ class Image extends Component {
     });
     getPhoto(this.state.photoId, (photo) => {
       this.props.setPhoto(photo);
-      setLoaded();
-    });
+      console.log(photo);
+    })
   };
 
   render() {
@@ -44,17 +45,23 @@ class Image extends Component {
         onClick={this.handleClick}
         style={{ gridRowEnd: `span ${this.state.spanCount}` }}
       >
-        <NavLink to={`/photo/${this.props.photo.id}`}>
+        <Link to={`/photo/${this.props.photo.id}`}>
           <img
             ref={this.photoRef}
             key={this.props.photo.id}
             src={this.props.photo.urls.small}
             alt=""
           />
-        </NavLink>
+        </Link>
       </div>
     );
   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPhoto: (photo) => dispatch(setPhoto(photo)),
+  };
 }
 
 export default Loader(Image);
