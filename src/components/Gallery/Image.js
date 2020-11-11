@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { setLoaded, setLoading } from "../../actions/loadingActions";
-import { setPhoto } from "../../actions/photoActions";
-import { getPhoto } from "../../api/PhotoAPI";
-import Loader from "../HOC/Loader";
+import {  setPhotoId } from "../../actions/photoActions";
+
 
 class Image extends Component {
   constructor(props) {
@@ -27,22 +26,17 @@ class Image extends Component {
     });
   }
 
-  handleClick = (e) => {
-    setLoading();
-    this.setState({
-      photoId: e.target.key,
-    });
-    getPhoto(this.state.photoId, (photo) => {
-      this.props.setPhoto(photo);
-      console.log(photo);
-    })
+  handleClick = async (photoId) => {
+    this.props.setPhotoId(photoId);
   };
 
   render() {
     return (
       <div
         key={this.props.photo.id}
-        onClick={this.handleClick}
+        onClick={() => {
+          this.handleClick(this.props.photo.id);
+        }}
         style={{ gridRowEnd: `span ${this.state.spanCount}` }}
       >
         <Link to={`/photo/${this.props.photo.id}`}>
@@ -60,8 +54,8 @@ class Image extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setPhoto: (photo) => dispatch(setPhoto(photo)),
+    setPhotoId: (photoId) => dispatch(setPhotoId(photoId))
   };
-}
+};
 
-export default Loader(Image);
+export default connect(null, mapDispatchToProps)(Image);

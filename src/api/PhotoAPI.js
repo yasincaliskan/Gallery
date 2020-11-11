@@ -21,7 +21,6 @@ export const getPhotos = async (query, page, collection, callback) => {
 };
 
 export const getPhoto = async (photoId, callback) => {
-  console.log(photoId);
   await axios
     .get(`https://api.unsplash.com/photos/${photoId}`, {
       headers: {
@@ -29,8 +28,6 @@ export const getPhoto = async (photoId, callback) => {
       },
     })
     .then((resultPhoto) => {
-      console.log(resultPhoto);
       callback(resultPhoto.data);
-
     });
 };

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./gallery.css";
-import "../HOC/loader.css";
 import Image from "./Image";
 import Pagination from "../Pagination/Pagination";
-import Loader from "../HOC/Loader";
 import { connect } from "react-redux";
 
 class Gallery extends Component {
@@ -24,8 +22,7 @@ class Gallery extends Component {
 const mapStateToProps = (state) => {
   return {
     photos: state.photos,
-    // isLoading: state.isLoading,
   };
 };
 
-export default Loader(connect(mapStateToProps)(Gallery));
+export default connect(mapStateToProps)(Gallery);

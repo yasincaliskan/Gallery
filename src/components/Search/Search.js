@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import logo from "./Logo.png";
 import "./search.css";
 import { connect } from "react-redux";
-import axios from "axios";
 import { setInitPage } from "../../actions/searchActions";
 import { setPhotos } from '../../actions/photoActions';
 import { getPhotos } from '../../api/PhotoAPI';

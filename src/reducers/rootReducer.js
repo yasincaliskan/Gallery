@@ -1,17 +1,16 @@
 const initState = {
   photos: [],
-  photo: {},
+  photoId: "",
   search: "",
   page: 1,
   isLoading: false,
 };
 
 const rootReducer = (state = initState, action) => {
-  if (action.type === "SET_PHOTO") {
-    console.log(action.photo);
+  if (action.type === "SET_PHOTO_ID") {
     return {
       ...state,
-      photo: action.photo,
+      photoId: action.photoId,
     };
   } else if (action.type === "SET_PHOTOS") {
     return {

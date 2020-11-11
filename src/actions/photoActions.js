@@ -1,7 +1,7 @@
-export const setPhoto = (photo) => {
+export const setPhotoId = (photoId) => {
   return {
-    type: "SET_PHOTO",
-    photo: photo,
+    type: "SET_PHOTO_ID",
+    photoId: photoId,
   };
 };
 
