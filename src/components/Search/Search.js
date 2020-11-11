@@ -40,22 +40,9 @@ class Search extends Component {
     );
   };
 
-  pressEnter = (event) => {
-    if (event.key === "Enter") {
-      this.props.setInitPage();
-      this.callPhotos();
-    }
-  };
-
   onClick = () => {
     this.props.setInitPage();
     this.callPhotos();
-  };
-
-  handleChange = (e) => {
-    this.setState({
-      collection: e.target.value,
-    });
   };
 
   render() {
@@ -69,7 +56,6 @@ class Search extends Component {
             className="search-box"
             type="text"
             onChange={this.inputChange}
-            onKeyPress={this.pressEnter}
             placeholder="Query"
           />
 

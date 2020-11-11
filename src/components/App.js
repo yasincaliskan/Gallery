@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Search from "./Search/Search";
 import Gallery from "./Gallery/Gallery";
 import Photo from "./Detail/Photo";
-import Home from "./Home";
+import Home from "./Home/Home";
+import '../index.css';
 
 class App extends Component {
   render() {
