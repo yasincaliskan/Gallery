@@ -4,18 +4,17 @@ import logo from "./Logo.png";
 import "./search.css";
 import { connect } from "react-redux";
 import { setInitPage } from "../../actions/searchActions";
-import { setPhotos } from '../../actions/photoActions';
-import { getPhotos } from '../../api/PhotoAPI';
-import { setLoaded, setLoading } from "../../actions/loadingActions";
+import { setPhotos } from "../../actions/photoActions";
+import { getPhotos } from "../../api/PhotoAPI";
 
 class Search extends Component {
   state = {
     search: "",
-    collection: "",
+    collection: "Nature",
     collections: [
-      { title: "Nature" , id:1},
-      { title: "Technology", id:2 },
-      { title: "Popular", id:3 },
+      { title: "Nature", id: 1 },
+      { title: "Technology", id: 2 },
+      { title: "Popular", id: 3 },
     ],
   };
 
@@ -27,30 +26,31 @@ class Search extends Component {
 
   inputChange = (event) => {
     const searchKey = event.target.value;
-     this.setState({
-      search: searchKey,
-    });
+    this.setState({ search: searchKey });
   };
 
   callPhotos = () => {
-    setLoading();
-    getPhotos(this.state.search, this.props.page, this.state.collection, (photos) => {
-      this.props.setPhotos(photos);
-    });
-    setLoaded();
-  }
+     getPhotos(
+      this.state.search,
+      this.props.page,
+      this.state.collection,
+      (photos) => {
+        this.props.setPhotos(photos);
+      }
+    );
+  };
 
   pressEnter = (event) => {
     if (event.key === "Enter") {
       this.props.setInitPage();
-      this.callPhotos(); 
+      this.callPhotos();
     }
   };
 
   onClick = () => {
     this.props.setInitPage();
-      this.callPhotos();
-  }
+    this.callPhotos();
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -79,13 +79,17 @@ class Search extends Component {
             defaultValue="mahmut"
           >
             {this.state.collections.map((collection) => (
-              <option key={collection.id} className="dropdown-item" value={collection.title}>
+              <option
+                key={collection.id}
+                className="dropdown-item"
+                value={collection.title}
+              >
                 {collection.title}
               </option>
             ))}
           </select>
 
-          <Link to="/">
+          <Link to={`/photos/${this.state.search}`}>
             <button className="search-button" onClick={this.onClick}>
               <p>SEARCH</p>
             </button>
@@ -106,7 +110,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setPhotos: (photos) => dispatch(setPhotos(photos)),
     setInitPage: () => dispatch(setInitPage()),
-    // setLoader: (isLoading) => dispatch(setLoader(isLoading)),
   };
 };
 

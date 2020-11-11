@@ -1,18 +1,10 @@
 const initState = {
   photos: [],
-  photoId: "",
-  search: "",
   page: 1,
-  isLoading: false,
 };
 
 const rootReducer = (state = initState, action) => {
-  if (action.type === "SET_PHOTO_ID") {
-    return {
-      ...state,
-      photoId: action.photoId,
-    };
-  } else if (action.type === "SET_PHOTOS") {
+  if (action.type === "SET_PHOTOS") {
     return {
       ...state,
       photos: action.photos.data.results,
@@ -21,16 +13,6 @@ const rootReducer = (state = initState, action) => {
     return {
       ...state,
       page: 1,
-    };
-  } else if (action.type === "SET_LOADING") {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  } else if (action.type === "SET_LOADED") {
-    return {
-      ...state,
-      isLoading: false,
     };
   } else if (action.type === "SET_PAGE_NUMBER") {
     const pageWay = action.pageWay;
