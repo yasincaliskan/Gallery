@@ -30,7 +30,7 @@ class Search extends Component {
   };
 
   callPhotos = () => {
-     getPhotos(
+    getPhotos(
       this.state.search,
       this.props.page,
       this.state.collection,

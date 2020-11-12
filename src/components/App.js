@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Search from "./Search/Search";
 import Gallery from "./Gallery/Gallery";
 import Photo from "./Detail/Photo";
-import Home from "./Home/Home";
-import '../index.css';
+import Home from "./Root/Home";
+import NotFound from "./Root/NotFound";
+import "../index.css";
 
 class App extends Component {
   render() {
@@ -12,9 +13,12 @@ class App extends Component {
       <div className="app-container">
         <Router>
           <Search />
-          <Route exact strict path="/" component={() => <Home />} />
-          <Route exact path="/photos/:search" component={() => <Gallery />} />
-          <Route exact path="/photo/:id" component={() => <Photo />} />
+          <Switch>
+            <Route exact strict path="/" component={() => <Home />} />
+            <Route exact path="/photos/:search" component={() => <Gallery />} />
+            <Route exact path="/photo/:id" component={() => <Photo />} />
+            <Route component={NotFound} />
+          </Switch>
         </Router>
       </div>
     );

@@ -9,19 +9,13 @@ class Pagination extends Component {
       <div>
         <button
           className="prev-button"
-          onClick={() => {
-            this.props.setPageNumber("PREV");
-          }}
-        >
+          onClick={() => {this.props.setPageNumber("PREV")}}>
           Prev
         </button>
 
         <button
           className="next-button"
-          onClick={() => {
-            this.props.setPageNumber("NEXT");
-          }}
-        >
+          onClick={() => {this.props.setPageNumber("NEXT")}}>
           Next
         </button>
       </div>

@@ -9,7 +9,7 @@ export const getPhotos = async (query, page, collection, callback) => {
         collection,
       },
       headers: {
-        Authorization: "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
+        Authorization: `Client-ID ${process.env.REACT_APP_PHOTO_API_KEY}`,
       },
     })
     .then((resultPhotos) => {
@@ -24,7 +24,7 @@ export const getPhoto = async (photoId, callback) => {
   await axios
     .get(`https://api.unsplash.com/photos/${photoId}`, {
       headers: {
-        Authorization: "Client-ID Mm0ZkI5cVVOTWwfBKLCoQHmrUEC1Ecao15N1xsl6hN0",
+        Authorization: `Client-ID ${process.env.REACT_APP_PHOTO_API_KEY}`,
       },
     })
     .then((resultPhoto) => {
