@@ -1,3 +1,4 @@
+
 ## Gallery App
 
 A gallery app where you can search for photos of things you are curious about and see details about the photo.
@@ -17,25 +18,9 @@ All project data fetched from the Unsplash API endpoints.
 ## Installing
 
   ```s
-  git clone git@github.com:yasincaliskan/Gallery.git
+  git clone https://github.com/yasincaliskan/Gallery.git
   cd gallery
    ```
-
-To use Unsplash API it is necessary to add the .env file to the root directory.
-
- ```
- -node_modules
- -public
- -src
- .env  <--
- .package.json
-```
-
-You can register [here](https://unsplash.com/join) to quickly get the API Key. Then you need to define the following in .env file.
-
-```REACT_APP_PHOTO_API_KEY = YOUR_API_KEY```
-
-  
 
 In the project directory, you can run:
 
